@@ -9,7 +9,10 @@ With Ollama + Gemma 4, 26B:
 
 With ollama-proxy + Gemma 4, 26B:
 
+
 <hr>
+
+**INSTALL.md**
 
 ```
 Your App  →  POST /api/chat  →  ollama_proxy.py  →  llama-server  →  Model
