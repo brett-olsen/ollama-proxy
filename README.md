@@ -7,6 +7,4 @@ For my specific use case, this results in a 200%-300% performance increase when 
 
 With Ollama + Gemma 4, 26B:
 
-
-
 With ollama-proxy + Gemma 4, 26B:
