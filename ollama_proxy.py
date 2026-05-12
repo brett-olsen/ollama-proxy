@@ -69,6 +69,10 @@ DEFAULT_OPTIONS: dict = {
 # Set to True to log outgoing params and unload/warmup events
 DEBUG: bool = False
 
+# Auto-restart config — if llama-server crashes it will be restarted automatically
+RESTART_MAX_RETRIES: int   = 5     # max consecutive restart attempts before giving up
+RESTART_DELAY_SECS:  float = 5.0   # seconds to wait between restart attempts
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  OLLAMA OPTIONS → llama.cpp / OpenAI PARAMETER MAP
@@ -103,7 +107,9 @@ OPTION_MAP: dict[str, str] = {
 
 _llama_proc: subprocess.Popen | None = None
 _llama_output_lines: list[str] = []
-_server_loaded: bool = False          # tracks whether llama-server is up
+_server_loaded: bool = False           # tracks whether llama-server is up
+_server_restarting: bool = False       # True while a restart is in progress
+_restart_count: int = 0                # consecutive crash counter
 _server_lock: asyncio.Lock | None = None   # prevents concurrent start/stop
 
 
@@ -205,6 +211,104 @@ async def _wait_for_server(timeout: int = 300) -> None:
     )
 
 
+async def _restart_llama_server() -> None:
+    """Restart llama-server after an unexpected crash."""
+    global _server_loaded, _server_restarting, _restart_count, _client
+
+    async with _server_lock:
+        if _server_restarting:
+            return   # another coroutine already handling it
+        _server_restarting = True
+        _server_loaded     = False
+
+    try:
+        _restart_count += 1
+        print(
+            f"\n[proxy] ⚠ llama-server crashed — restart attempt "
+            f"{_restart_count}/{RESTART_MAX_RETRIES}…",
+            flush=True,
+        )
+
+        if _restart_count > RESTART_MAX_RETRIES:
+            print(
+                f"[proxy] ✗ llama-server has crashed {_restart_count - 1} times. "
+                "Giving up. Restart the proxy manually.",
+                flush=True,
+            )
+            return
+
+        # Brief delay so we don't hammer the GPU on repeated crashes
+        await asyncio.sleep(RESTART_DELAY_SECS * min(_restart_count, 4))
+
+        # Clean up dead process
+        _stop_llama_server_sync()
+
+        # Relaunch
+        _start_llama_server_sync()
+        await _wait_for_server()
+
+        # Fresh httpx client
+        try:
+            await _client.aclose()
+        except Exception:
+            pass
+        _client = httpx.AsyncClient(
+            base_url=f"http://{LLAMA_HOST}:{LLAMA_PORT}",
+            timeout=httpx.Timeout(300.0),
+        )
+
+        async with _server_lock:
+            _server_loaded     = True
+            _server_restarting = False
+            _restart_count     = 0   # reset on successful start
+
+        print("[proxy] ✓ llama-server restarted successfully.", flush=True)
+
+    except Exception as e:
+        print(f"[proxy] ✗ Restart failed: {e}", flush=True)
+        async with _server_lock:
+            _server_restarting = False
+
+
+async def _watchdog() -> None:
+    """Background task — polls llama-server every 2s and restarts if it crashed."""
+    while True:
+        await asyncio.sleep(2)
+        if not _server_loaded or _server_restarting:
+            continue
+        if _llama_proc and _llama_proc.poll() is not None:
+            # Process has exited unexpectedly
+            print(
+                f"[proxy] ⚠ Watchdog detected llama-server exit "
+                f"(code {_llama_proc.returncode})",
+                flush=True,
+            )
+            asyncio.create_task(_restart_llama_server())
+
+
+async def _ensure_server_ready() -> Response | None:
+    """Return a 503 response if the server is currently restarting, else None."""
+    if _server_restarting:
+        return Response(
+            content=json.dumps({
+                "error":   "llama-server is restarting after a crash, please retry",
+                "status":  "loading",
+            }),
+            status_code=503,
+            media_type="application/json",
+        )
+    if not _server_loaded:
+        return Response(
+            content=json.dumps({
+                "error":  "llama-server is not running",
+                "status": "unloaded",
+            }),
+            status_code=503,
+            media_type="application/json",
+        )
+    return None
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 #  UNLOAD / WARMUP
 #  Your app calls these via the standard Ollama API:
@@ -268,7 +372,12 @@ async def lifespan(app: FastAPI):
         timeout=httpx.Timeout(300.0),
     )
     print(f"[proxy] Listening on http://0.0.0.0:{PROXY_PORT}  (Ollama-compatible)\n")
+
+    watchdog_task = asyncio.create_task(_watchdog())
+
     yield
+
+    watchdog_task.cancel()
     await _client.aclose()
     _stop_llama_server_sync()
 
@@ -386,6 +495,10 @@ def _usage_fields(usage: dict) -> dict:
 
 @app.post("/api/generate")
 async def api_generate(request: Request):
+    guard = await _ensure_server_ready()
+    if guard:
+        return guard
+
     body    = await request.json()
     model   = body.get("model", "default")
     stream  = body.get("stream", True)
@@ -569,6 +682,10 @@ def _convert_messages(messages: list) -> list:
 
 @app.post("/api/chat")
 async def api_chat(request: Request):
+    guard = await _ensure_server_ready()
+    if guard:
+        return guard
+
     body     = await request.json()
     model    = body.get("model", "default")
     messages = _translate_messages(body.get("messages", []))
