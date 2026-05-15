@@ -5,22 +5,7 @@ Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need l
 
 For my specific use case, this results in a 200%-300% performance increase when using Gemma 4, 26B =)
 
-With Ollama + Gemma 4, 26B (with 1 warmup round):<br>
-── Results ──────────────────────────────────────────<br>
-\#  status      latency    tok_in    tok_out       t/s<br>
-────────────────────────────────────────────────────────<br>
-1  ✓ ok         39.89s        90        503  12.6 t/s<br>
-2  ✓ ok         58.52s        90        774  13.2 t/s<br>
-3  ✓ ok         44.90s        90        609  13.6 t/s<br>
-4  ✓ ok         32.80s        90        452  13.8 t/s<br>
-5  ✓ ok         49.15s        90        665  13.5 t/s<br>
-6  ✓ ok         55.60s        90        746  13.4 t/s<br>
-7  ✓ ok         43.32s        90        588  13.6 t/s<br>
-8  ✓ ok         49.31s        90        682  13.8 t/s<br>
-9  ✓ ok         58.63s        90        828  14.1 t/s<br>
-10  ✓ ok         43.04s        90        621  14.4 t/s<br>
-────────────────────────────────────────────────────────<br><br>
-
+With Ollama + Gemma 4, 26B:
 ───────────────────────────────────────────────────────<br>
 Model      : gemma4:26b<br>
 Think mode : off<br>
@@ -29,10 +14,10 @@ Requests   : 10  ✓ 10  ✗ 0<br>
 Latency    : avg 47.52s  min 32.80s  max 58.63s<br>
 Throughput : avg 13.6 t/s  max 14.4 t/s<br>
 Tokens out : 6468 total<br>
+Warm Up    : 1 round<br>
 ───────────────────────────────────────────────────────<br><br>
 
-
-With ollama-proxy + Gemma 4, 26B (with 1 warmup round):
+With ollama-proxy + Gemma 4, 26B:
 
 <br><br>
 <hr>
