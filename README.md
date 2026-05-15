@@ -32,11 +32,13 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 23.04s  min 17.04s  max 28.85s<br>
 Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
-───────────────────────────────────────────────────────<br>
+───────────────────────────────────────────────────────<br><br>
 
-<br>
-<hr>
-<br>
+With Ollama + Gemma 4, 26B (multi threaded):<br>
+
+With ollama-proxy + Gemma 4, 26B (multi threaded):<br>
+
+<br><hr><br>
 
 **INSTALL.md**
 
