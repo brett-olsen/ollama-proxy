@@ -7,7 +7,7 @@ For my specific use case, this results in a 200%-300% performance increase when 
 
 With Ollama + Gemma 4, 26B (with 1 warmup round):<br>
 ── Results ──────────────────────────────────────────<br>
-/#  status      latency    tok_in    tok_out       t/s<br>
+\#  status      latency    tok_in    tok_out       t/s<br>
 ────────────────────────────────────────────────────────<br>
 1  ✓ ok         39.89s        90        503  12.6 t/s<br>
 2  ✓ ok         58.52s        90        774  13.2 t/s<br>
