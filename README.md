@@ -3,7 +3,7 @@ A lightweight Python proxy that lets any Ollama-compatible app run against [llam
 
 Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need llama.cpp flags that Ollama doesn't expose — particularly `--n-cpu-moe` for splitting expert layers across CPU RAM and GPU VRAM.<br><br>
 
-For my specific use case, this results in a 200% (single threaded) - 300% performance increase (depending on workloads) when using Gemma 4, 26B =)<br><br>
+For my specific use case, this results in a 200%+ performance increase (depending on workloads) when using Gemma 4, 26B =)<br><br>
 
 With Ollama + Gemma 4, 26B (single threaded):<br>
 ───────────────────────────────────────────────────────<br>
@@ -35,7 +35,19 @@ Tokens out  : 0 total<br>
 ───────────────────────────────────────────────────────<br><br>
 
 With Ollama + Gemma 4, 26B (multi threaded):<br>
-
+───────────────────────────────────────────────────────<br>
+Model       : gemma4:26b<br>
+Mode        : chat (/api/chat)<br>
+Think       : off<br>
+Context     : 104,448 tokens<br>
+Requests    : 9  ✓ 9  ✗ 0  concurrency: 3<br>
+Warmup      : 1 pass<br>
+System      : You are a helpful AI assistant being acc…<br>
+Prompt      : Explain in great detail, 6502 Machine La…<br>
+Latency     : avg 109.36s  min 39.46s  max 147.00s<br>
+Throughput  : avg 5.9 t/s  max 13.7 t/s<br>
+Tokens out  : 5042 total<br>
+───────────────────────────────────────────────────────<br><br>
 
 With ollama-proxy + Gemma 4, 26B (multi threaded):<br>
 ───────────────────────────────────────────────────────<br>
