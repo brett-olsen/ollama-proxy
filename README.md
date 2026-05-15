@@ -3,7 +3,7 @@ A lightweight Python proxy that lets any Ollama-compatible app run against [llam
 
 Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need llama.cpp flags that Ollama doesn't expose — particularly `--n-cpu-moe` for splitting expert layers across CPU RAM and GPU VRAM.<br><br>
 
-For my specific use case, this results in a 200%-300% performance increase when using Gemma 4, 26B =)<br>
+For my specific use case, this results in a 200%,300% (or more depending on workloads) performance increase when using Gemma 4, 26B =)<br>
 
 With Ollama + Gemma 4, 26B:<br>
 ───────────────────────────────────────────────────────<br>
@@ -11,13 +11,28 @@ Model      : gemma4:26b<br>
 Think mode : off<br>
 Context    : 104,448 tokens<br>
 Requests   : 10  ✓ 10  ✗ 0<br>
+Warmup      : 1 pass
+System      : You are a helpful AI assistant being acc…
+Prompt      : Explain in great detail, 6502 Machine La…
 Latency    : avg 47.52s  min 32.80s  max 58.63s<br>
 Throughput : avg 13.6 t/s  max 14.4 t/s<br>
 Tokens out : 6468 total<br>
-Warm Up    : 1 round<br>
 ───────────────────────────────────────────────────────<br><br>
 
 With ollama-proxy + Gemma 4, 26B:<br>
+───────────────────────────────────────────────────────<br>
+Model       : gemma4:26b<br>
+Mode        : chat (/api/chat)<br>
+Think       : off<br>
+Context     : 104,448 tokens<br>
+Requests    : 10  ✓ 10  ✗ 0  concurrency: 1<br>
+Warmup      : 1 pass<br>
+System      : You are a helpful AI assistant being acc…<br>
+Prompt      : Explain in great detail, 6502 Machine La…<br>
+Latency     : avg 23.04s  min 17.04s  max 28.85s<br>
+Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
+Tokens out  : 0 total<br>
+───────────────────────────────────────────────────────<br>
 
 <br><br>
 <hr>
