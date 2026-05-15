@@ -5,7 +5,7 @@ Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need l
 
 For my specific use case, this results in a 200%,300% (or more depending on workloads) performance increase when using Gemma 4, 26B =)<br><br>
 
-With Ollama + Gemma 4, 26B:<br>
+With Ollama + Gemma 4, 26B (single threaded):<br>
 ───────────────────────────────────────────────────────<br>
 Model      : gemma4:26b<br>
 Think mode : off<br>
@@ -19,7 +19,7 @@ Throughput : avg 13.6 t/s  max 14.4 t/s<br>
 Tokens out : 6468 total<br>
 ───────────────────────────────────────────────────────<br><br>
 
-With ollama-proxy + Gemma 4, 26B:<br>
+With ollama-proxy + Gemma 4, 26B (single threaded):<br>
 ───────────────────────────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
