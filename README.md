@@ -37,6 +37,19 @@ Tokens out  : 0 total<br>
 With Ollama + Gemma 4, 26B (multi threaded):<br>
 
 With ollama-proxy + Gemma 4, 26B (multi threaded):<br>
+───────────────────────────────────────────────────────
+Model       : gemma4:26b
+Mode        : chat (/api/chat)
+Think       : off
+Context     : 104,448 tokens
+Requests    : 9  ✓ 9  ✗ 0  concurrency: 3
+Warmup      : 1 pass
+System      : You are a helpful AI assistant being acc…
+Prompt      : Explain in great detail, 6502 Machine La…
+Latency     : avg 53.27s  min 45.35s  max 63.23s
+Throughput  : avg 0.0 t/s  max 0.0 t/s
+Tokens out  : 0 total
+───────────────────────────────────────────────────────
 
 <br><hr><br>
 
