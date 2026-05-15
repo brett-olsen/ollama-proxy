@@ -34,9 +34,9 @@ Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
 ───────────────────────────────────────────────────────<br>
 
-<br><br>
+<br>
 <hr>
-<br><br>
+<br>
 
 **INSTALL.md**
 
