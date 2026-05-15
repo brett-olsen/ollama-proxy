@@ -11,9 +11,9 @@ Model      : gemma4:26b<br>
 Think mode : off<br>
 Context    : 104,448 tokens<br>
 Requests   : 10  ✓ 10  ✗ 0<br>
-Warmup      : 1 pass
-System      : You are a helpful AI assistant being acc…
-Prompt      : Explain in great detail, 6502 Machine La…
+Warmup      : 1 pass<br>
+System      : You are a helpful AI assistant being acc…<br>
+Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency    : avg 47.52s  min 32.80s  max 58.63s<br>
 Throughput : avg 13.6 t/s  max 14.4 t/s<br>
 Tokens out : 6468 total<br>
