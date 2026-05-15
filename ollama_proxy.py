@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""
-Ollama → llama.cpp Proxy
-========================
-Starts llama-server as a subprocess, then listens on Ollama's default port
-and translates every Ollama API call into the equivalent llama-server
-(OpenAI-compatible) call — and translates the response back.
-
-Install deps:  pip install fastapi uvicorn httpx
-Run:           python ollama_proxy.py
-"""
+# ----------------------------------------------------------------------------------------------------------------------
+# ollama_proxy : A small drop in replacement for Ollama, that gives you access to the advanced features of llama.cpp
+# created for use with VibeBuddy64U but can be used for any Ollama project/uses, specifically designed enhanced
+# performance when using MoE models
+#
+# https://github.com/brett-olsen/ollama-proxy
+# Version 0.2
+# Created by Brett Olsen - 2026
+# ----------------------------------------------------------------------------------------------------------------------
 
 import asyncio
 import base64
