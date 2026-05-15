@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ----------------------------------------------------------------------------------------------------------------------
 # ollama_proxy : A small drop in replacement for Ollama, that gives you access to the advanced features of llama.cpp
-# created for use with VibeBuddy64U but can be used for any Ollama project/uses, specifically designed enhanced
+# created for use with VibeBuddy64U but can be used for any Ollama project/uses, specifically designed for enhanced
 # performance when using MoE models
 #
 # https://github.com/brett-olsen/ollama-proxy
