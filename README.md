@@ -64,6 +64,36 @@ Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
 ───────────────────────────────────────────────────────<br><br>
 
+With Ollama + Gemma 4, 26B (thinking):<br>
+───────────────────────────────────────────────────────<br>
+Model       : gemma4:26b<br>
+Mode        : chat (/api/chat)<br>
+Think       : on<br>
+Context     : 104,448 tokens<br>
+Requests    : 1  ✓ 1  ✗ 0  concurrency: 1<br>
+Warmup      : 1 pass<br>
+System      : You are a helpful AI assistant being acc…<br>
+Prompt      : Explain in great detail, 6502 Machine La…<br>
+Latency     : avg 124.93s  min 124.93s  max 124.93s<br>
+Throughput  : avg 12.3 t/s  max 12.3 t/s<br>
+Tokens out  : 1540 total<br>
+───────────────────────────────────────────────────────<br><br>
+
+With ollama-proxy + Gemma 4, 26B (thinking):<br>
+───────────────────────────────────────────────────────<br>
+Model       : gemma4:26b<br>
+Mode        : chat (/api/chat)<br>
+Think       : on<br>
+Context     : 104,448 tokens<br>
+Requests    : 1  ✓ 1  ✗ 0  concurrency: 1<br>
+Warmup      : 1 pass<br>
+System      : You are a helpful AI assistant being acc…<br>
+Prompt      : Explain in great detail, 6502 Machine La…<br>
+Latency     : avg 47.29s  min 47.29s  max 47.29s<br>
+Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
+Tokens out  : 0 total<br>
+───────────────────────────────────────────────────────<br><br>
+
 <hr>
 
 **INSTALL.md**
