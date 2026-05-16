@@ -17,10 +17,10 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency    : avg 47.52s  min 32.80s  max 58.63s<br>
 Throughput : avg 13.6 t/s  max 14.4 t/s<br>
 Tokens out : 6468 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 With ollama-proxy + Gemma 4, 26B (single threaded):<br>
-───────────────────────────────────────────────────────<br>
+─────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
 Think       : off<br>
@@ -32,10 +32,10 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 23.04s  min 17.04s  max 28.85s<br>
 Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 With Ollama + Gemma 4, 26B (multi threaded):<br>
-───────────────────────────────────────────────────────<br>
+─────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
 Think       : off<br>
@@ -47,10 +47,10 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 109.36s  min 39.46s  max 147.00s<br>
 Throughput  : avg 5.9 t/s  max 13.7 t/s<br>
 Tokens out  : 5042 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 With ollama-proxy + Gemma 4, 26B (multi threaded):<br>
-───────────────────────────────────────────────────────<br>
+─────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
 Think       : off<br>
@@ -62,10 +62,10 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 53.27s  min 45.35s  max 63.23s<br>
 Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 With Ollama + Gemma 4, 26B (thinking):<br>
-───────────────────────────────────────────────────────<br>
+─────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
 Think       : on<br>
@@ -77,10 +77,10 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 124.93s  min 124.93s  max 124.93s<br>
 Throughput  : avg 12.3 t/s  max 12.3 t/s<br>
 Tokens out  : 1540 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 With ollama-proxy + Gemma 4, 26B (thinking):<br>
-───────────────────────────────────────────────────────<br>
+─────────────────────────────────<br>
 Model       : gemma4:26b<br>
 Mode        : chat (/api/chat)<br>
 Think       : on<br>
@@ -92,7 +92,7 @@ Prompt      : Explain in great detail, 6502 Machine La…<br>
 Latency     : avg 47.29s  min 47.29s  max 47.29s<br>
 Throughput  : avg 0.0 t/s  max 0.0 t/s<br>
 Tokens out  : 0 total<br>
-───────────────────────────────────────────────────────<br><br>
+─────────────────────────────────<br><br>
 
 <hr>
 
