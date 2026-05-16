@@ -6,9 +6,7 @@ Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need l
 For my specific use case, this results in a 200%+ performance increase (depending on workloads) when using Gemma 4, 26B =)<br><br>
 
 With Ollama + Gemma 4, 26B (single threaded):<br>
-
-───────────────────────────────────────────────────────<br>
-
+───<br>
 Model      : gemma4:26b<br>
 Think mode : off<br>
 Context    : 104,448 tokens<br>
