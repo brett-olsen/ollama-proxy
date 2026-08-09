@@ -3,6 +3,7 @@ A lightweight Python proxy that lets any Ollama-compatible app run against [llam
 
 *Update : A new version, 0.5 is being tested, this includes context window changes, thinking/reasoning toggles, proper support for tools/vision calls and capability checking, better model unloading/reloading support and many bugfixes*
 
+
 Designed specifically for **MoE models** (like Gemma 4 26B A4B) where you need llama.cpp flags that Ollama doesn't expose — particularly `--n-cpu-moe` for splitting expert layers across CPU RAM and GPU VRAM.<br><br>
 
 For my specific use case, this results in a 200%+ performance increase (depending on workloads) when using Gemma 4, 26B =)<br><br>
